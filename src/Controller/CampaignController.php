@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Campaign;
 use App\Form\CampaignType;
 use App\Repository\CampaignRepository;
+use DateTimeImmutable;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -26,10 +27,15 @@ class CampaignController extends AbstractController
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $campaign = new Campaign();
+
+        // dd($campaign);
         $form = $this->createForm(CampaignType::class, $campaign);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $campaign->setCreatedAt(new DateTimeImmutable());
+            $campaign->setUpdatedAt(new DateTimeImmutable());
+            // $campaign->setId();
             $entityManager->persist($campaign);
             $entityManager->flush();
 
@@ -37,7 +43,7 @@ class CampaignController extends AbstractController
         }
 
         return $this->render('campaign/new.html.twig', [
-            'campaign' => $campaign,
+            // 'campaign' => $campaign,
             'form' => $form,
         ]);
     }

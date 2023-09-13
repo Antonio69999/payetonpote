@@ -42,6 +42,13 @@ class Campaign
         $this->participants = new ArrayCollection();
     }
 
+    public function setId(string $id): self
+    {
+        $id = md5(random_bytes(50));
+        $this->id = $id;
+        return $this;
+    }
+
     public function getId(): ?int
     {
         return $this->id;
