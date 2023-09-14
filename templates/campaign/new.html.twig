@@ -2,6 +2,10 @@
 
 {% block title %}New Campaign{% endblock %}
 
+{% block stylesheets %}<!--Simple MDE -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">{% endblock %}
+
+
 {% block body %}
     <div class="parallax-container valign-wrapper">
         <div class="section no-pad-bot">
@@ -61,6 +65,11 @@
 
         </div>
     </div>
-
-
 {% endblock %}
+
+		{% block javascripts %}
+            <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+    <script>
+        var simplemde = new SimpleMDE({ element: document.getElementById("description") });
+    </script>{% endblock %}
+
