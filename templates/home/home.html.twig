@@ -33,7 +33,7 @@
 
 			</div>
 		</div>
-		<div class="parallax"><img src="assets/images/11.jpg" alt="Anniversaire, pot de départ, crémaillère... N'avancez plus les frais !"></div>
+		<div class="parallax"><img src="{{ asset ('assets/images/11.jpg') }}" alt="Anniversaire, pot de départ, crémaillère... N'avancez plus les frais !"></div>
 	</div>
 
 	<div class="container">
@@ -68,7 +68,7 @@
 				<div class="col s12 m4">
 					<div class="icon-block center">
 						<div class="btn-large btn-floating white">
-							<i class="material-icons teal-text">shopping_cart></i>
+							<a href="{{ ('campaign_payement') }}"><i class="material-icons teal-text">shopping_cart></i></a>
 						</div>
 						<h5 class="center">Collectez</h5>
 						<p class="light">et utilisez l'argent comme bon vous semble avec vos amis.</p>

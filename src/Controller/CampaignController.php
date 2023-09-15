@@ -51,8 +51,11 @@ class CampaignController extends AbstractController
     #[Route('/{id}', name: 'app_campaign_show', methods: ['GET'])]
     public function show(Campaign $campaign): Response
     {
+        $countParticipant = (count($campaign->getParticipants()));
+
         return $this->render('campaign/show.html.twig', [
             'campaign' => $campaign,
+            'countParticipant' => $countParticipant,
         ]);
     }
 

@@ -21,7 +21,7 @@ class CampaignType extends AbstractType
                 'label' => 'Pourquoi ?',
                 'attr' => [
                     'placeholder' => 'Contenu de votre campagne : ',
-                    'id' => 'description',
+                    'class' => 'text-area',
                 ],
             ])
             // ->add('createdAt')
