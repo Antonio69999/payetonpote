@@ -1,7 +1,23 @@
-{{ form_start(form) }}
-{{ form_widget(form) }}
-<button class="btn btn-large waves-effect waves-light pink lighten-1 col s12" type="submit" name="action">
-	Participer
-	<i class="material-icons right">euro_symbol</i>
-	{{ form_end(form) }}
+{{ form_start(formPayment) }}
+<h5 class="center">Votre identité</h5>
+{{ form_row(formPayment.participantId.email) }}
 
+<div class="input-field col s12 l6">
+    {{ form_row(formPayment.amount)}}
+</div>
+
+<div class="clearfix"></div>
+<h5 class="center">Paiement</h5>
+<div class="input-field col s12">
+    {{ form_row(formPayment.participantId.name) }}
+</div>
+<div class="input-field col s12 l6">
+    <a href="#!" class="btn btn-large waves-effect waves-light grey col s12">Annuler</a>
+</div>
+<div class="input-field col s12 l6">
+    <button class="btn btn-large waves-effect waves-light pink lighten-1 col s12" type="submit" name="action">
+        Participer
+        <i class="material-icons right">euro_symbol</i>
+    </button>
+</div>
+{{ form_end(formPayment) }}

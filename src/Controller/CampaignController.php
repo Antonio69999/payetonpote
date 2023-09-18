@@ -49,15 +49,18 @@ class CampaignController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_campaign_show', methods: ['GET'])]
-    public function show(Campaign $campaign): Response
+    public function show(Campaign $campaign, $id, CampaignRepository $campaignRepository): Response
     {
-        $countParticipant = (count($campaign->getParticipants()));
-
+        $countParticipant = count($campaign->getParticipants());
+        $totalAmount = $campaignRepository->getTotalAmountByCampaignId($id);
+    
         return $this->render('campaign/show.html.twig', [
             'campaign' => $campaign,
             'countParticipant' => $countParticipant,
+            'totalAmount' => $totalAmount,
         ]);
     }
+    
 
     #[Route('/{id}/edit', name: 'app_campaign_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Campaign $campaign, EntityManagerInterface $entityManager): Response

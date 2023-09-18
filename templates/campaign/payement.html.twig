@@ -4,16 +4,18 @@
 {% endblock %}
 
 {% block body%}
+
+
 	<div class="parallax-container valign-wrapper">
 		<div class="section no-pad-bot">
 			<div class="container">
 				<h1 class="header center white-text light">{{ campaign.title }}</h1>
 				<div class="row center">
-					<h5 class="header col s12 light">- Organisée par : {{ campaign.name }} -</h5>
+					<h5 class="header col s12 light">- Organisée par : {{ campaign.name}} -</h5>
 				</div>
 			</div>
 		</div>
-		<div class="parallax"><img src="assets/images/8.jpg" alt="Titre de la campagne"></div>
+		<div class="parallax"><img src="{{ asset ('assets/images/8.jpg') }}" alt="Titre de la campagne"></div>
 	</div>
 
 	<div class="container">
@@ -27,9 +29,7 @@
 			<div class="card">
 				<div class="card-content">
 					<div class="row">
-						{# {% include ('_form_payment.html.twig') %} #}
-							</div>
-						</form>
+   					 {{ include('campaign/_form_payment.html.twig') }}
 					</div>
 				</div>
 			</div>
@@ -78,9 +78,5 @@
 
 		</div>
 	</div>
-
-
-{% endblock %}
-
-
+	{% endblock %}
 

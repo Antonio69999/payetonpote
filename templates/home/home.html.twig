@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-        {% block stylesheets %}{% endblock %}
+{% block stylesheets %}{% endblock %}
 
 
 {% block body %}
@@ -68,7 +68,9 @@
 				<div class="col s12 m4">
 					<div class="icon-block center">
 						<div class="btn-large btn-floating white">
-							<a href="{{ ('campaign_payement') }}"><i class="material-icons teal-text">shopping_cart></i></a>
+							<a href="{{ ('campaign_payement') }}">
+								<i class="material-icons teal-text">shopping_cart></i>
+							</a>
 						</div>
 						<h5 class="center">Collectez</h5>
 						<p class="light">et utilisez l'argent comme bon vous semble avec vos amis.</p>
@@ -101,122 +103,32 @@
 			<div class="row">
 				<div class="col s12">
 					<div class="carousel">
-						<a class="carousel-item" href="#one!">
-							<div class="card center">
-								<div class="card-content">
-									<span class="card-title teal-text">Titre campagne</span>
-									<p class="black-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
-								</div>
-								<div class="card-action">
-									<div class="row black-text">
-										<div class="col s6">
-											<i class="material-icons teal-text">account_circle</i>
-											<b>12</b>
-										</div>
-										<div class="col s6">
-											<i class="material-icons teal-text">euro_symbol</i>
-											<b>350</b>
-										</div>
+						{% for campaign in campaigns %}
+							<a class="carousel-item" href="campaign/{{ campaign.id }}">
+								<div class="card center">
+									<div class="card-content">
+										<span class="card-title teal-text">{{ campaign.title}}</span>
+										<p class="black-text">{{ campaign.content }}</p>
 									</div>
+									<div class="card-action">
+										<div class="row black-text">
+											<div class="col s6">
+												<i class="material-icons teal-text">account_circle</i>
+												<b>{{ campaign.participants|length }}</b>
+											</div>
+											<div class="col s6">
+												<i class="material-icons teal-text">euro_symbol</i>
+												<b>{{ campaign.goal }}</b>
+											</div>
+										</div>
 
-								</div>
-								<div class="progress">
-									<div class="determinate" style="width: 70%"></div>
-								</div>
-							</div>
-						</a>
-						<a class="carousel-item" href="#two!">
-							<div class="card center">
-								<div class="card-content">
-									<span class="card-title teal-text">Titre campagne</span>
-									<p class="black-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
-								</div>
-								<div class="card-action">
-									<div class="row black-text">
-										<div class="col s6">
-											<i class="material-icons teal-text">account_circle</i>
-											<b>12</b>
-										</div>
-										<div class="col s6">
-											<i class="material-icons teal-text">euro_symbol</i>
-											<b>350</b>
-										</div>
+									</div>
+									<div class="progress">
+										<div class="determinate" style="width: 70%"></div>
 									</div>
 								</div>
-								<div class="progress">
-									<div class="determinate" style="width: 70%"></div>
-								</div>
-							</div>
-						</a>
-						<a class="carousel-item" href="#three!">
-							<div class="card center">
-								<div class="card-content">
-									<span class="card-title teal-text">Titre campagne</span>
-									<p class="black-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
-								</div>
-								<div class="card-action">
-									<div class="row black-text">
-										<div class="col s6">
-											<i class="material-icons teal-text">account_circle</i>
-											<b>12</b>
-										</div>
-										<div class="col s6">
-											<i class="material-icons teal-text">euro_symbol</i>
-											<b>350</b>
-										</div>
-									</div>
-								</div>
-								<div class="progress">
-									<div class="determinate" style="width: 70%"></div>
-								</div>
-							</div>
-						</a>
-						<a class="carousel-item" href="#four!">
-							<div class="card center">
-								<div class="card-content">
-									<span class="card-title teal-text">Titre campagne</span>
-									<p class="black-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
-								</div>
-								<div class="card-action">
-									<div class="row black-text">
-										<div class="col s6">
-											<i class="material-icons teal-text">account_circle</i>
-											<b>12</b>
-										</div>
-										<div class="col s6">
-											<i class="material-icons teal-text">euro_symbol</i>
-											<b>350</b>
-										</div>
-									</div>
-								</div>
-								<div class="progress">
-									<div class="determinate" style="width: 70%"></div>
-								</div>
-							</div>
-						</a>
-						<a class="carousel-item" href="#five!">
-							<div class="card center">
-								<div class="card-content">
-									<span class="card-title teal-text">Titre campagne</span>
-									<p class="black-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
-								</div>
-								<div class="card-action">
-									<div class="row black-text">
-										<div class="col s6">
-											<i class="material-icons teal-text">account_circle</i>
-											<b>12</b>
-										</div>
-										<div class="col s6">
-											<i class="material-icons teal-text">euro_symbol</i>
-											<b>350</b>
-										</div>
-									</div>
-								</div>
-								<div class="progress">
-									<div class="determinate" style="width: 70%"></div>
-								</div>
-							</div>
-						</a>
+							</a>
+						{% endfor %}
 					</div>
 				</div>
 			</div>

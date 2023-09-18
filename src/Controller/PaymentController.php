@@ -15,32 +15,34 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class PaymentController extends AbstractController
 {
-    #[Route('/campaign/{id}/payement', name: 'app_campaign_payement')]
-    public function payment(Campaign $campaign): Response
-    {
-        return $this->render('campaign/payement.html.twig', [
-            'campaign' => $campaign,
-        ]);
-    }
 
-    public function payement(Request $request, EntityManagerInterface $entityManager): Response
+    #[Route('/campaign/{id}/payement', name: 'app_campaign_payement')]
+    public function payement(Request $request, Campaign $campaign, EntityManagerInterface $entityManager): Response
     {
         $payment = new Payment();
-        $form = $this->createForm(PaymentType::class, $payment);
+        $formPayment = $this->createForm(PaymentType::class, $payment);
 
-        $form->handleRequest($request);
+        $formPayment->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($formPayment->isSubmitted() && $formPayment->isValid()) {
+
+
             $payment->setCreatedAt(new DateTimeImmutable());
             $payment->setUpdatedAt(new DateTimeImmutable());
+
+            $payment->getParticipantId()->setCampaignId($campaign);
+            $payment->getParticipantId()->getCampaignId()->setUpdatedAt(new DateTimeImmutable());
+
             $entityManager->persist($payment);
             $entityManager->flush();
 
-            return $this->redirectToRoute('payment', [], Response::HTTP_SEE_OTHER);
+
+            return $this->redirectToRoute('app_campaign_show', ['id'=>$campaign->getId()], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('payment/payment.html.twig', [
-            'form' => $form->createView(),
+        return $this->render('campaign/payement.html.twig', [
+            'formPayment' => $formPayment,
+            'campaign' => $campaign,
         ]);
     }
 }

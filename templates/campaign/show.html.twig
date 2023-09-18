@@ -10,11 +10,13 @@
 			<div class="container">
 				<h1 class="header center white-text light">{{ campaign.title }}</h1>
 				<div class="row center">
-					<h5 class="header col s12 light">- Organisée par : {{ campaign.name }} -</h5>
+					<h5 class="header col s12 light">- Organisée par :
+						{{ campaign.name }}
+						-</h5>
 				</div>
 			</div>
 		</div>
-		<div class="parallax"><img src="{{ asset ('assets/images/8.jpg') }}"  alt="Titre de la campagne"></div>
+		<div class="parallax"><img src="{{ asset ('assets/images/8.jpg') }}" alt="Titre de la campagne"></div>
 	</div>
 
 	<!-- Show progress -->
@@ -64,7 +66,7 @@
 						<div class="btn-large btn-floating white">
 							<i class="material-icons teal-text">redeem</i>
 						</div>
-						<h3 class="center">220</h3>
+						<h3 class="center">{{ totalAmount }}</h3>
 						<p class="light">euros récoltés</p>
 					</div>
 				</div>
@@ -103,15 +105,20 @@
 						</thead>
 
 						<tbody>
-							<tr>
-								{% for participant in campaign.participants %}
+							{% for participant in campaign.participants %}
+
+								<tr>
 									<td>
 										{{ participant.email }}
-										{# <td>5€</td> #}
 									</td>
-								{% endfor %}
+									<td>
+										{% for payment in participant.getPayments() %}
+											{{ payment.getAmount() }}
+										{% endfor %}
+									</td>
+								</tr>
+							{% endfor %}
 
-							</tr>
 						</tbody>
 					</table>
 				</div>
@@ -128,5 +135,7 @@
 			</div>
 		</div>
 		<div class="parallax"><img src="{{ asset ('assets/images/10.jpg')}}" alt="Une campagne pensée pour vous"></div>
-	{% endblock %}
+	</div>
+
+{% endblock %}
 
